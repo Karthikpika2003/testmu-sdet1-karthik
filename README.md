@@ -62,73 +62,75 @@ testmu-sdet1-karthik/
 ├── requirements.txt
 ├── pytest.ini
 └── README.md
-Setup
-1) Create and activate virtual environment
+```
+## Setup
+
+### 1) Create and activate virtual environment
+
+```bash
 python -m venv venv
-venv\Scripts\activate   # Windows
-2) Install dependencies
+venv\Scripts\activate
+```
+
+### 2) Install dependencies
+```bash
 pip install -r requirements.txt
 playwright install
-3) Set Groq API key (Windows PowerShell)
-$env:GROQ_API_KEY="YOUR_GROQ_API_KEY_HERE"
+```
 
+### 3) Set Groq API key (Windows PowerShell)
+```bash
+$env:GROQ_API_KEY="YOUR_GROQ_API_KEY_HERE"
+```
 (You can make it permanent later with setx GROQ_API_KEY "..." and reopening the terminal.)
 
-Running the Tests
-
+## Running the Tests
 From the project root:
-
+```bash
 pytest
-
+```
 If a test passes: normal Pytest output
 
 If a test fails: the Failure Explainer sends details to the LLM and appends a human-readable explanation to:
-
+```
 reports/ai_failure_report.txt
-How to see the AI Failure Explainer in action
+```
+
+## How to see the AI Failure Explainer in action
 
 To verify the AI integration (Task 3), you can temporarily introduce a failing assertion in:
-
+```
 tests/ui/test_login.py
-
+```
 When the test fails, an LLM-generated explanation will be appended to:
-
+```
 reports/ai_failure_report.txt
-
+```
 This uses the Groq API directly (real LLM call, not mocked).
 
-AI Failure Explainer (Task 3)
+## AI Failure Explainer (Task 3)
 
-Why this option?
+### Why this option?
 I chose Option A (Failure Explainer) because it provides immediate, human-readable feedback on test failures and helps reduce debugging time during regression runs.
 
-How it works:
+### How it works:
 
-Pytest detects a failed test
-
-The failure hook collects:
-
+1)Pytest detects a failed test
+2)The failure hook collects:
 Test name
-
 Error output
-
-This information is sent to the LLM (via Groq API)
-
-The LLM returns:
-
+3)This information is sent to the LLM (via Groq API)
+4)The LLM returns:
 What likely went wrong
-
 What part of the app is suspicious
-
 One concrete suggestion to fix it
-
-The result is saved to:
-
+5)The result is saved to:
+```
 reports/ai_failure_report.txt
-
+```
 A sample output file is included in the repository.
 
-AI-Generated Test Cases (Task 2)
+### AI-Generated Test Cases (Task 2)
 
 AI was used to generate test cases for:
 
@@ -142,13 +144,14 @@ REST API Module:
 tests/api/generated_api_tests.feature
 
 All prompts used (including initial and improved versions) are documented in:
-
+```
 prompts.md
-
+```
 A full audit log of AI usage is available in:
-
+```
 ai-usage-log.md
-How AI Was Used
+```
+### How AI Was Used
 
 Generate structured Gherkin test cases for UI and API modules
 
@@ -160,7 +163,7 @@ Assist in refining failure messages and test assertions
 
 Details are recorded in ai-usage-log.md.
 
-What I’d Build Next (With More Time)
+### What I’d Build Next (With More Time)
 
 Capture richer failure context (screenshots, HTML snapshots, API responses)
 
@@ -172,7 +175,7 @@ Convert more AI-generated scenarios into fully automated tests
 
 Add structured test reports (Allure / HTML reports) with embedded AI insights
 
-Notes
+### Notes
 
 This project focuses on demonstrating process and integration of AI into QA workflows, rather than exhaustively testing a single real product.
 
@@ -185,3 +188,4 @@ Reproducible prompts
 Real LLM integration
 
 Practical QA engineering workflows
+

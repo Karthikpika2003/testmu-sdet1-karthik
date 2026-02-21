@@ -1,48 +1,42 @@
-TestMu SDET-1 — AI-Native QA Challenge
+# TestMu SDET-1 — AI-Native QA Challenge
 
-Author: Karthik V Nambiar
+**Author:** Karthik V Nambiar
 
-Overview
+## Overview
 
 This repository demonstrates how AI can be integrated into a Python + Playwright test framework to reduce debugging time and accelerate test creation.
 
 It covers three modules:
-
-Login (UI)
-
-Dashboard (UI)
-
-REST API
+- Login (UI)
+- Dashboard (UI)
+- REST API
 
 The project includes:
+- AI-generated test cases (Gherkin) for all three modules
+- A Failure Explainer that sends real test failures to an LLM and saves a plain-English explanation
+- A clear audit trail of prompts and AI usage
 
-AI-generated test cases (Gherkin) for all three modules
+This was built as part of the **TestMu AI SDET-1 Assessment**.
 
-A Failure Explainer that sends real test failures to an LLM and saves a plain-English explanation
+---
 
-A clear audit trail of prompts and AI usage
+## Tech Stack
 
-This was built as part of the TestMu AI SDET-1 Assessment.
+- **Language:** Python  
+- **Test Framework:** Pytest  
+- **UI Automation:** Playwright  
+- **API Testing:** Requests  
+- **LLM Provider:** Groq (Llama 3.1 8B Instant)
 
-Tech Stack
+**AI Use Cases:**
+- Test case generation (Task 2)
+- Failure Explainer integrated into test runs (Task 3)
 
-Language: Python
+---
 
-Test Framework: Pytest
+## Project Structure
 
-UI Automation: Playwright
-
-API Testing: Requests
-
-LLM Provider: Groq (Llama 3.1 8B Instant)
-
-AI Use Cases:
-
-Test case generation (Task 2)
-
-Failure Explainer integrated into test runs (Task 3)
-
-Project Structure
+```text
 testmu-sdet1-karthik/
 │
 ├── core/
@@ -93,7 +87,10 @@ If a test fails: the Failure Explainer sends details to the LLM and appends a hu
 reports/ai_failure_report.txt
 How to see the AI Failure Explainer in action
 
-To verify the AI integration (Task 3), you can temporarily introduce a failing assertion in tests/ui/test_login.py.
+To verify the AI integration (Task 3), you can temporarily introduce a failing assertion in:
+
+tests/ui/test_login.py
+
 When the test fails, an LLM-generated explanation will be appended to:
 
 reports/ai_failure_report.txt
